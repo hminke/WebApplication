@@ -16,6 +16,11 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.any(:json) { render request.format.to_sym => @section }
+    end
   end
 
   def new
