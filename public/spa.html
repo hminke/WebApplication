@@ -42,7 +42,13 @@
                 var section = getData("sections/" + data.section_id);
                 return section.semester;
             }
-            fetch('enrollments', [displaySemester ]);
+
+            function displayCourseName(data) {
+                var section = getData("sections/" + data.section_id);
+                var course = getData("courses/" + section.course_id);
+                return course.name;
+            }
+            fetch('enrollments', [displaySemester, displayCourseName ]);
         });
     });
 
