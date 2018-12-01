@@ -53,7 +53,12 @@
                 var section = getData("sections/" + data.section_id);
                 return section.number;
             }
-            fetch('enrollments', [displaySemester, displayCourseName, displaySectionNumber ]);
+
+            function displayStudentName(data) {
+                var student = getData("students/" + data.student_id);
+                return student.name;
+            }
+            fetch('enrollments', [displaySemester, displayCourseName, displaySectionNumber, displayStudentName ]);
         });
     });
 
