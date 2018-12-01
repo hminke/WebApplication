@@ -1,0 +1,21 @@
+<p>
+  <strong>Student:</strong>
+  <%= @enrollment.student.name %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @enrollment.section.course_section_number %>
+</p>
+
+<p>
+  <%= link_to 'Edit', enrollment_path %>
+</p>
+
+<p>
+  <%= link_to 'View Enrollments', enrollments_path %>
+</p>
+
+<p>
+  <a href="/" >Home</a>
+</p>

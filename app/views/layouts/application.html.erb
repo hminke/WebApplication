@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebApplication</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <nav class="navbar navbar-light bg-info">
+      <a class="navbar-brand" href="/">Web App</a>
+      <form class="form-inline">
+        <%= link_to 'Courses', courses_path, :class => 'btn btn-outline-light' %>
+        <div style="padding-left: 10px;">
+          <%= link_to 'Sections', sections_path, :class => 'btn btn-outline-light' %>
+        </div>
+        <div style="padding-left: 10px;">
+          <%= link_to 'Students', students_path, :class => 'btn btn-outline-light' %>
+        </div>
+        <div style="padding-left: 10px;">
+          <%= link_to 'Enrollment', enrollments_path, :class => 'btn btn-outline-light' %>
+        </div>
+        <div style="padding-left: 10px;">
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-outline-light' %>
+        </div>
+        <div style="padding-left: 10px;">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-outline-light'  %>
+        </div>
+      </form>
+    </nav>
+  <% else %>
+    <nav class="navbar navbar-light bg-info">
+      <a class="navbar-brand" href="/">Web App</a>
+      <form class="form-inline">
+        <a class="btn btn-outline-light" href="/users/sign_in" role="button">
+          Login
+        </a>
+        <div style="padding-left: 10px;">
+          <a class="btn btn-outline-light" href="/users/sign_up" role="button">
+            Sign Up
+          </a>
+        </div>
+      </form>
+    </nav>
+  <% end %>
+  </p>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+    <%= yield %>
+  </body>
+</html>

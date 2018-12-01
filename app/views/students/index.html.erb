@@ -1,0 +1,38 @@
+<h1>Students</h1>
+
+<p>
+  <%= form_tag(students_path, method: :get) do %>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+<p/>
+
+<table cellpadding="10" cellspacing="0" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Student ID</th>
+    <th>Phone Number</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.name %></td>
+      <td><%= student.number %></td>
+      <td><%= student.phoneNumber %></td>
+      <td><%= student.email %></td>
+      <td><%= link_to 'Show', student_path(student) %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <td><%= link_to 'Delete', student_path(student),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'New Student', new_student_path %>
+</p>

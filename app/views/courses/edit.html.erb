@@ -1,0 +1,51 @@
+<h1>Edit Course</h1>
+
+<%=  form_for :course, url:course_path, method: :patch,  local: true do |form| %>
+
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+       <%= pluralize(@course.errors.count, "error") %> prohibited
+        this course from being saved:
+     </h2>
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+       <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+   <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :department %><br>
+    <%= form.text_field :department %>
+  </p>
+
+  <p>
+    <%= form.label :number, 'Course Number' %><br>
+    <%= form.text_field :number %>
+  </p>
+
+  <p>
+    <%= form.label :creditHours, 'Credit Hours' %><br>
+    <%= form.text_field :creditHours %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<p>
+  <%= link_to 'View Courses', courses_path %>
+<p/>
+
+<p>
+  <a href="/" >Home</a>
+</p>

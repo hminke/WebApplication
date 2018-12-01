@@ -1,0 +1,32 @@
+<h1>New Section</h1>
+<%= form_for :section, url:sections_path, local: true do |form| %>
+  <p>
+    <%= form.label :semester %><br>
+    <%= form.text_field :semester %>
+  </p>
+
+  <p>
+    <%= form.label :number, 'Section Number' %><br>
+    <%= form.text_field :number %>
+  </p>
+  <p>
+    <%= form.label :roomNumber, 'Room Number' %><br>
+    <%= form.text_field :roomNumber %>
+  </p>
+  <p>
+    <%= form.label :course_id, 'Course' %><br>
+    <%= form.collection_select(:course_id, Course.all, :id, :name) %>
+  </p>
+
+  <p>
+    <%= form.submit 'Create' %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to 'View Sections', sections_path %>
+</p>
+
+<p>
+  <a href="/" >Home</a>
+</p>

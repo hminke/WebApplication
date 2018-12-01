@@ -1,0 +1,2 @@
+module CourseControllerHelper
+end

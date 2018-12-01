@@ -1,0 +1,51 @@
+<h1>Edit Section</h1>
+
+<%=  form_for :student, url:student_path, method: :patch, local: true do |form| %>
+
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> prohibited
+        this student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name, 'Student Name' %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :number, 'Student ID' %><br>
+    <%= form.text_field :number %>
+  </p>
+
+  <p>
+    <%= form.label :phoneNumber, 'Phone Number' %><br>
+    <%= form.text_field :phoneNumber %>
+  </p>
+
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<p>
+  <%= link_to 'View Sections', sections_path %>
+<p/>
+
+<p>
+  <a href="/" >Home</a>
+</p>

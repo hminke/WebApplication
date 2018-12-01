@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A very simple jQuery SPA</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<button onclick="fetch('students', ['name' , 'number' , 'phoneNumber' , 'email'])">Students</button>
+<button onclick="fetch('courses', ['name', 'department', 'number', 'creditHours'])">Courses</button>
+<button id="sections">Sections</button>
+<button onclick="fetch('enrollments', ['section_id', 'student_id'])">Enrollments</button>
+
+<div id="list">
+</div>
+
+<script>
+    $(document).ready(function() {
+        function getData(path){
+            var result = null;
+            $.get({
+                url: "http://127.0.0.1:3000/" + path + ".json",
+                dataType: "json",
+                async : false,
+                success: function(data) { result = data; }
+            });
+            return result;
+        }
+
+        $("#sections").on('click', function() {
+            function displayCourseName(data) {
+                var course = getData("courses/" + data.course_id);
+                return course.name;
+            }
+            fetch('sections', ['semester', 'number', 'roomNumber', displayCourseName ]);
+        });
+    });
+
+    var fetch = function(which, fields) {
+        $("#list").empty();
+        $.get({ url: "http://127.0.0.1:3000" + "/" + which + ".json", dataType: "json"})
+            .done(function(json) {
+                for (item in json) {
+                    lis = "<li>";
+                    for (index in fields) {
+
+                        var field = fields[index];
+                        if ($.isFunction(field)) {
+                            lis += field(json[item]) + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        } else {
+                            lis += json[item][field] + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        }
+                    }
+                    lis += "<br /><br /></li>";
+                    $("#list").append(lis);
+                }
+            })
+            .fail(function(){ console.log("fail", arguments); })
+    };
+</script>
+
+</body>
+</html>

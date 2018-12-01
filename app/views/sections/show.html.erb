@@ -1,0 +1,31 @@
+<p>
+  <strong>Semester:</strong>
+  <%= @section.semester %>
+</p>
+
+<p>
+  <strong>Section Number:</strong>
+  <%= @section.number %>
+</p>
+
+<p>
+  <strong>Room Number:</strong>
+  <%= @section.roomNumber %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @section.course.name %>
+</p>
+
+<p>
+  <%= link_to 'Edit', sections_path %>
+</p>
+
+<p>
+  <%= link_to 'View Sections', sections_path %>
+</p>
+
+<p>
+  <a href="/" >Home</a>
+</p>

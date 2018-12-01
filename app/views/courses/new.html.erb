@@ -1,0 +1,34 @@
+<h1>New Course</h1>
+<%=  form_for :course, url:courses_path, local: true do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :department %><br>
+    <%= form.text_field :department %>
+  </p>
+
+  <p>
+    <%= form.label :number %><br>
+    <%= form.text_field :number %>
+  </p>
+
+  <p>
+    <%= form.label :creditHours, 'Credit Hours' %><br>
+    <%= form.text_field :creditHours %>
+  </p>
+
+  <p>
+    <%= form.submit 'Create' %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to 'View Courses', courses_path %>
+</p>
+
+<p>
+  <a href="/" >Home</a>
+</p>

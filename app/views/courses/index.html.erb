@@ -1,0 +1,38 @@
+<h1>Courses</h1>
+
+<p>
+  <%= form_tag(courses_path, method: :get) do %>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+<p/>
+
+<table cellpadding="10" cellspacing="0" border="1">
+  <tr>
+    <th>Course Name</th>
+    <th>Department</th>
+    <th>Course Number</th>
+    <th>Credit Hours</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.name %></td>
+      <td><%= course.department %></td>
+      <td><%= course.number %></td>
+      <td><%= course.creditHours %></td>
+      <td><%= link_to 'Show', course_path(course) %></td>
+      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+      <td><%= link_to 'Delete', course_path(course),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'New Course', new_course_path %>
+</p>

@@ -1,0 +1,36 @@
+<h1>Enrollment</h1>
+
+<p>
+  <%= form_tag(enrollments_path, method: :get) do %>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+<p/>
+
+<table cellpadding="10" cellspacing="0" border="1">
+  <tr>
+    <th>Semester</th>
+    <th>Course/Section</th>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @enrollments.each do |enrollment| %>
+    <tr>
+      <td><%= enrollment.section.semester %></td>
+      <td><%= enrollment.section.course_section_number %></td>
+      <td><%= enrollment.student.name %></td>
+      <td><%= link_to 'Show', enrollment_path(enrollment) %></td>
+      <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
+      <td><%= link_to 'Delete', enrollment_path(enrollment),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'New Enrollment', new_enrollment_path %>
+</p>

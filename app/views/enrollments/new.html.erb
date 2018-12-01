@@ -1,0 +1,24 @@
+<h1>New Enrollment</h1>
+<%= form_for :enrollment, url:enrollments_path, local: true do |form| %>
+  <p>
+    <%= form.label :student_id, 'Student' %><br>
+    <%= form.collection_select(:student_id, Student.all, :id, :name) %>
+  </p>
+
+  <p>
+    <%= form.label :section_id, 'Section' %><br>
+    <%= form.collection_select(:section_id, Section.all, :id, :course_section_number) %>
+  </p>
+
+  <p>
+    <%= form.submit 'Create' %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to 'View Enrollments', enrollments_path %>
+</p>
+
+<p>
+  <a href="/" >Home</a>
+</p>
