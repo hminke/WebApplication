@@ -48,7 +48,12 @@
                 var course = getData("courses/" + section.course_id);
                 return course.name;
             }
-            fetch('enrollments', [displaySemester, displayCourseName ]);
+
+            function displaySectionNumber(data) {
+                var section = getData("sections/" + data.section_id);
+                return section.number;
+            }
+            fetch('enrollments', [displaySemester, displayCourseName, displaySectionNumber ]);
         });
     });
 
