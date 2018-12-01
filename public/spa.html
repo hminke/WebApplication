@@ -11,7 +11,7 @@
 <button onclick="fetch('students', ['name' , 'number' , 'phoneNumber' , 'email'])">Students</button>
 <button onclick="fetch('courses', ['name', 'department', 'number', 'creditHours'])">Courses</button>
 <button id="sections">Sections</button>
-<button onclick="fetch('enrollments', ['section_id', 'student_id'])">Enrollments</button>
+<button id="enrollments">Enrollments</button>
 
 <div id="list">
 </div>
@@ -35,6 +35,14 @@
                 return course.name;
             }
             fetch('sections', ['semester', 'number', 'roomNumber', displayCourseName ]);
+        });
+
+        $("#enrollments").on('click', function() {
+            function displaySemester(data) {
+                var section = getData("sections/" + data.section_id);
+                return section.semester;
+            }
+            fetch('enrollments', [displaySemester ]);
         });
     });
 
